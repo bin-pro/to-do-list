@@ -28,16 +28,19 @@ function saveToDos() {
 
 function paintToDo(text) {
   const li = document.createElement("li");
-  const delBtn = document.createElement("button");
+  const checkBox = document.createElement("i");
   const span = document.createElement("span");
+  const delBtn = document.createElement("button");
   const newId = toDos.length + 1;
 
+  checkBox.classList.add("far");
+  checkBox.classList.add("fa-square");
   delBtn.innerHTML = "❌";
   delBtn.addEventListener("click", deleteToDo);
   span.innerText = text;
-
-  li.appendChild(delBtn);
+  li.appendChild(checkBox);
   li.appendChild(span);
+  li.appendChild(delBtn);
   li.id = newId;
   toDoList.appendChild(li);
   const toDosObj = {
