@@ -20,6 +20,21 @@ function askForName() {
   form.addEventListener("submit", handleSubmit);
 }
 
+function getAppropriateGreeting() {
+  const date = new Date();
+  const hours = date.getHours();
+  let appropriateGreeting = "";
+
+  appropriateGreeting =
+    6 <= hours && hours < 12
+      ? "Good morning"
+      : 12 <= hours && hours < 18
+      ? "Good afternoon"
+      : "Good evening";
+
+  return appropriateGreeting;
+}
+
 function paintGreeting(text) {
   const weather = document.querySelector(".js-weather");
   const toDoForm = document.querySelector(".js-toDoForm");
@@ -28,7 +43,7 @@ function paintGreeting(text) {
   greeting.classList.add(SHOWING_CN);
   toDoForm.classList.add(SHOWING_CN);
   weather.classList.add(SHOWING_CN);
-  greeting.innerText = `Hello! ${text}`;
+  greeting.innerText = `${getAppropriateGreeting()}, ${text}.`;
 }
 function loadName() {
   const currentUser = localStorage.getItem(USER_LS);

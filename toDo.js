@@ -3,6 +3,7 @@ const toDoForm = document.querySelector(".js-toDoForm"),
   toDoList = document.querySelector(".js-toDoList");
 
 const TODOS_LS = "toDos";
+
 let toDos = [];
 
 function handleSubmit() {
@@ -32,11 +33,11 @@ function paintToDo(text) {
   const span = document.createElement("span");
   const delBtn = document.createElement("button");
   const newId = toDos.length + 1;
-
   checkBox.classList.add("far");
   checkBox.classList.add("fa-square");
-  delBtn.innerHTML = "❌";
+  delBtn.innerHTML = "X";
   delBtn.addEventListener("click", deleteToDo);
+
   span.innerText = text;
   li.appendChild(checkBox);
   li.appendChild(span);
