@@ -1,6 +1,11 @@
 const API_KEY = "dd3371f7e278e3318d480553dc3dcd64";
 const COORDS = "coords";
-const weather = document.querySelector(".js-weather");
+const weatherDiv = document.querySelector(".js-weather");
+
+const span1 = document.querySelector(".js-weather__span1"),
+  span2 = document.querySelector(".js-weather__span2"),
+  span3 = document.querySelector(".js-weather__span3"),
+  icon = document.querySelector(".js-weather__icon");
 
 function getWeather(lat, lon) {
   fetch(
@@ -12,8 +17,33 @@ function getWeather(lat, lon) {
     .then(function (json) {
       const temperature = json.main.temp;
       const place = json.name;
-      weather.innerText = `${Math.ceil(temperature)}°, ${place}`;
+      const getWeather = json.weather[0].description;
+
+      setWeatherIcon(getWeather);
+      span1.innerText = `${getWeather}`;
+      span2.innerText = `${Math.ceil(temperature)}°`;
+      span3.innerText = `${place}`;
     });
+}
+
+function setWeatherIcon(getWeather) {
+  if (getWeather === "light rain") {
+    icon.classList.add("fas");
+    icon.classList.add("fa-cloud-rain");
+    icon.classList.add("fa-3x");
+  } else if (getWeather === "clear sky") {
+    icon.classList.add("fas");
+    icon.classList.add("fa-sun");
+    icon.classList.add("fa-2x");
+  } else if (getWeather === "overcast clouds") {
+    icon.classList.add("fas");
+    icon.classList.add("fa-cloud");
+    icon.classList.add("fa-2x");
+  } else if (getWeather === "broken clouds") {
+    icon.classList.add("fas");
+    icon.classList.add("fa-cloud-sun");
+    icon.classList.add("fa-2x");
+  }
 }
 
 function saveCoords(coordsObj) {

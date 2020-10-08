@@ -36,13 +36,11 @@ function getAppropriateGreeting() {
 }
 
 function paintGreeting(text) {
-  const weather = document.querySelector(".js-weather");
   const toDoForm = document.querySelector(".js-toDoForm");
   form.classList.remove(SHOWING_CN);
   clockContainer.classList.add(SHOWING_CN);
   greeting.classList.add(SHOWING_CN);
   toDoForm.classList.add(SHOWING_CN);
-  weather.classList.add(SHOWING_CN);
   greeting.innerText = `${getAppropriateGreeting()}, ${text}.`;
 }
 function loadName() {
