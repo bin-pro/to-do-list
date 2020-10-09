@@ -30,19 +30,15 @@ function setWeatherIcon(getWeather) {
   if (getWeather === "light rain") {
     icon.classList.add("fas");
     icon.classList.add("fa-cloud-rain");
-    icon.classList.add("fa-3x");
   } else if (getWeather === "clear sky") {
     icon.classList.add("fas");
     icon.classList.add("fa-sun");
-    icon.classList.add("fa-2x");
   } else if (getWeather === "overcast clouds") {
     icon.classList.add("fas");
     icon.classList.add("fa-cloud");
-    icon.classList.add("fa-2x");
   } else if (getWeather === "broken clouds") {
     icon.classList.add("fas");
     icon.classList.add("fa-cloud-sun");
-    icon.classList.add("fa-2x");
   }
 }
 

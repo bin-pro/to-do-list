@@ -52,6 +52,6 @@ function loadName() {
   }
 }
 function init() {
-  loadName();
+  setInterval(loadName(), 1000 * 60 * 5); // for changing way of greeting
 }
 init();
