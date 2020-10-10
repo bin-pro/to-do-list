@@ -1,8 +1,8 @@
 const toDoForm = document.querySelector(".js-toDoForm"),
 toDoInput = toDoForm.querySelector("input"),
 toDoList = document.querySelector(".js-toDoList");
-const TODOS_LS = "toDos";
-let checked = true, toDos = [];
+const TODOS_LS = "toDos", CHECK_LS = "checked";
+let toDos = [], checkedList = [];
 
 function handleSubmit() {
   event.preventDefault();
@@ -25,14 +25,28 @@ function saveToDos() {
   localStorage.setItem(TODOS_LS, JSON.stringify(toDos));
 }
 
+function saveChecked(){
+  localStorage.setItem(CHECK_LS, JSON.stringify(checkedList))
+}
 function doneToDo(event){
-  const btn = event.target;
-  console.log(btn);
-
- // toDos[btn.getElemen].checked = true;
-  
+  const btn = event.target;  
   btn.classList.toggle("none");
-  saveToDos();
+  console.log(btn);
+  for(let i = 0; i<checkedList.length; i++){
+    if(checkedList[i]===1){
+      const checkIcon = document.querySelector(`.id${i + 1}`);
+      checkIcon.classList.remove("none");
+    }
+  }
+}
+
+function paintChecked(){
+  for(let i = 0; i<checkedList.length; i++){
+    if(checkedList[i]===1){
+      const checkIcon = document.querySelector(`.id${i + 1}`);
+      checkIcon.classList.remove("none");
+    }
+  }
 }
 
 function paintToDo(text) {
@@ -42,25 +56,21 @@ function paintToDo(text) {
   const span = document.createElement("span");
   const delBtn = document.createElement("button");
   const newId = toDos.length + 1;
-  const checked = false;
-  const iconId = newId;
+  const checkId = newId;
 
   checkBox.classList.add("far");
   checkBox.classList.add("fa-square");
   checkIcon.classList.add("fas");
   checkIcon.classList.add("fa-check");
-  checkIcon.id = iconId;
+  checkIcon.classList.add("none");
+  checkIcon.classList.add(`id${checkId}`);
 
-  console.log(JSON.parse(localStorage.getItem("toDos"))[toDos.length].checked );
+
+
+
   delBtn.innerHTML = "X";
   span.innerText = text;
-  
-  if(JSON.parse(localStorage.getItem("toDos"))[toDos.length].checked === true){
-    checkIcon.classList.remove("none");
-  }else{
-    checkIcon.classList.add("none");
-  }
-  
+
   li.appendChild(checkBox);
   li.appendChild(checkIcon);
   li.appendChild(span);
@@ -73,10 +83,12 @@ function paintToDo(text) {
   const toDosObj = {
     text: text,
     id: newId,
-    checked: checked,
   };
   toDos.push(toDosObj);
   saveToDos(toDos);
+
+  checkedList.push(0);
+  saveChecked(checkedList);
 }
 
 function loadToDos() {
