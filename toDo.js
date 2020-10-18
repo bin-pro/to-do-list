@@ -3,6 +3,7 @@ toDoInput = toDoForm.querySelector("input"),
 toDoList = document.querySelector(".js-toDoList");
 const TODOS_LS = "toDos", CHECK_LS = "checked";
 let toDos = [], checkedList = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+let count = 0;
 
 function handleSubmit() {
   event.preventDefault();
@@ -13,17 +14,39 @@ function handleSubmit() {
 function deleteToDo(event) {
   const btn = event.target;
   const li = btn.parentNode;
-  toDoList.removeChild(li);
-  const cleanToDos = toDos.filter(function (toDo) {
-    return toDo.id !== parseInt(li.id);
-  });
-  toDos = cleanToDos;
-  saveToDos();
 
-  getRealCheckedList();
-  checkedList.splice(li.id-1,1); // delete element on li.id-1
-  checkedList.push(0); // add element at tip of array
-  saveChecked();
+    /*
+    li = 3;
+
+    list 1
+    list 2
+    list 3
+    list 4
+    */
+   
+   toDoList.removeChild(li);
+   const cleanToDos = toDos.filter(function (toDo) {
+     return toDo.id !== parseInt(li.id);
+    });
+    toDos = cleanToDos;
+    saveToDos();
+
+    if(document.getElementById(`${parseInt(li.id) + 1}`) !== null){
+    for(let i = parseInt(li.id) + 1; i<=toDos.length; i++){
+      
+        list = document.getElementById(`${i}`);
+        if(list.id !== null){
+          list.id = i - 1;
+          console.log(list);
+        }
+      }
+    } // for changing id of list
+    getRealCheckedList();
+    
+    console.log(li.id-1);
+     checkedList.splice(li.id-1 , 1); // delete element on li.id-1
+     checkedList.push(0); // add element at tip of array
+     saveChecked();
 }
 
 function getRealCheckedList(){
@@ -76,7 +99,7 @@ function doneToDo(event){
       nCL[i] = "1";
     }
   }
-
+  
   if(nCL[li.id - 1] === "0"){
     nCL[li.id - 1] = "1";
   }
@@ -88,7 +111,6 @@ function doneToDo(event){
   }
   saveChecked();
 }
-
 
 function paintToDo(text) {
   const li = document.createElement("li");
