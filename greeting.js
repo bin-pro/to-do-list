@@ -52,6 +52,8 @@ function loadName() {
   }
 }
 function init() {
-  setInterval(loadName(), 1000 * 60 * 5); // for changing way of greeting
+  loadName();
+  const fiveMinutes = 1000*60*5;
+  setInterval(loadName, fiveMinutes); // for changing way of greeting
 }
 init();

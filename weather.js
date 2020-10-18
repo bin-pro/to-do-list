@@ -36,7 +36,7 @@ function setWeatherIcon(getWeather) {
   } else if (getWeather === "overcast clouds") {
     icon.classList.add("fas");
     icon.classList.add("fa-cloud");
-  } else if (getWeather === "broken clouds") {
+  } else if (getWeather === "broken clouds" || getWeather === "few clouds") {
     icon.classList.add("fas");
     icon.classList.add("fa-cloud-sun");
   }
