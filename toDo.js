@@ -70,8 +70,9 @@ function saveToDos() {
 }
 
 function saveChecked(){
-  localStorage.setItem(CHECK_LS, JSON.stringify(checkedList))
+  localStorage.setItem(CHECK_LS, JSON.stringify(checkedList));
 }
+
 function doneToDo(event){
   const btn = event.target;
   btn.classList.toggle("none");
@@ -154,7 +155,6 @@ function loadToDos() {
   }
 
 }
-
 function init() {
   loadToDos();
   toDoForm.addEventListener("submit", handleSubmit);

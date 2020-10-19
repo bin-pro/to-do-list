@@ -46,6 +46,7 @@ function paintGreeting(text) {
 function loadName() {
   const currentUser = localStorage.getItem(USER_LS);
   if (currentUser === null) {
+    localStorage.setItem("checked", "[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]");
     askForName();
   } else {
     paintGreeting(currentUser);
@@ -53,6 +54,7 @@ function loadName() {
 }
 function init() {
   loadName();
+
   const fiveMinutes = 1000*60*5;
   setInterval(loadName, fiveMinutes); // for changing way of greeting
 }
