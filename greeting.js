@@ -46,7 +46,8 @@ function paintGreeting(text) {
 function loadName() {
   const currentUser = localStorage.getItem(USER_LS);
   if (currentUser === null) {
-    localStorage.setItem("checked", "[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]");
+    const checkedList = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+    localStorage.setItem("checked", checkedList);
     askForName();
   } else {
     paintGreeting(currentUser);
