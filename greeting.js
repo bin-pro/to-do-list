@@ -47,7 +47,7 @@ function loadName() {
   const currentUser = localStorage.getItem(USER_LS);
   if (currentUser === null) {
     const checkedList = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
-    localStorage.setItem("checked", checkedList);
+    localStorage.setItem("checked", JSON.stringify(checkedList));
     askForName();
   } else {
     paintGreeting(currentUser);
