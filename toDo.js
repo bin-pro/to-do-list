@@ -15,25 +15,18 @@ function deleteToDo(event) {
   const btn = event.target;
   const li = btn.parentNode;
 
-    /*
-    li = 3;
-
-    list 1
-    list 2
-    list 3
-    list 4
-    */
-   
    toDoList.removeChild(li);
    const cleanToDos = toDos.filter(function (toDo) {
      return toDo.id !== parseInt(li.id);
     });
     toDos = cleanToDos;
+    for(let i = parseInt(li.id)-1; i<=toDos.length-1; i++){
+      toDos[i].id = i + 1;    
+    }
     saveToDos();
 
     if(document.getElementById(`${parseInt(li.id) + 1}`) !== null){
-    for(let i = parseInt(li.id) + 1; i<=toDos.length; i++){
-      
+    for(let i = parseInt(li.id) + 1; i<=toDos.length + 1; i++){
         list = document.getElementById(`${i}`);
         if(list.id !== null){
           list.id = i - 1;
